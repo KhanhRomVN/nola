@@ -100,7 +100,7 @@ export function Sidebar({ className }: SidebarProps) {
             </div>
           </div>
           <div className="space-y-1">
-          {menuItems.map((item, index) => (
+          {menuItems.map((item) => (
     <motion.div key={item.label} variants={itemVariants}>
       <Button
         variant={item.variant}
