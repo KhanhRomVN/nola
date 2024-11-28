@@ -18,67 +18,62 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "var(--border)",
-        input: "var(--input)",
-        ring: "var(--ring)",
-        background: "var(--background)",
-        background_secondary: "var(--background-secondary)",
-        foreground: "var(--foreground)",
-        /* customer colors */
-        green_background_opacity: "var(--green-background-opacity)",
-        red_background_opacity: "var(--red-background-opacity)",
-        blue_background_opacity: "var(--blue-background-opacity)",
-        green_background: "var(--green-background)",
-        red_background: "var(--red-background)",
-        blue_background: "var(--blue-background)",
-        primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)",
+        /* color */
+        color: {
+          primary: "var(--primary)",
         },
-        secondary: {
-          DEFAULT: "var(--secondary)",
-          foreground: "var(--secondary-foreground)",
+        /* background */
+        background: {
+          primary: "var(--background-primary)",
+          secondary: "var(--background-secondary)",
         },
-        destructive: {
-          DEFAULT: "var(--destructive)",
-          foreground: "var(--destructive-foreground)",
+        /* text */
+        text: {
+          primary: "var(--text-primary)",
+          secondary: "var(--text-secondary)",
         },
-        muted: {
-          DEFAULT: "var(--muted)",
-          foreground: "var(--muted-foreground)",
+        /* sidebar */
+        sidebar: {
+          primary: "var(--sidebar-primary)",
+          secondary: "var(--sidebar-secondary)",
         },
-        accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-foreground)",
+        /* sidebar item */
+        "sidebar-item": {
+          hover: "var(--sidebar-item-hover)",
+          active: "var(--sidebar-item-active)",
         },
-        popover: {
-          DEFAULT: "var(--popover)",
-          foreground: "var(--popover-foreground)",
+        /* sidebar text */
+        "sidebar-text": {
+          hover: "var(--sidebar-text-hover)",
+          active: "var(--sidebar-text-active)",
         },
+        /* dialog */
+        dialog: {
+          background: "var(--dialog-background)",
+          header: "var(--dialog-header)",
+        },
+        /* card */
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
+          background: "var(--card-background)",
+          header: "var(--card-header)",
         },
-        primary_color: "#318CE7",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        /* button */
+        button: {
+          primary: "var(--button-primary)",
+          primaryHover: "var(--button-primary-hover)",
+          primaryActive: "var(--button-primary-active)",
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        /* input */
+        input: {
+          background: "var(--input-background)",
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        /* search */
+        search: {
+          background: "var(--search-background)",
+          hover: "var(--search-hover)",
+          active: "var(--search-active)",
+          placeholder: "var(--search-placeholder)",
+        },
       },
     },
   },
