@@ -4,6 +4,7 @@ import { Search, Bell, History, Paperclip, Mic, Send } from "lucide-react";
 import { HistorySidebar } from "@/components/HistorySidebar";
 import { motion } from "framer-motion";
 import { _POST } from "@/api";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 interface ChatMessage {
   id: number;
@@ -16,6 +17,7 @@ const Atri10Page = () => {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isEnglish, setIsEnglish] = useState(true);
 
   const toggleHistory = () => {
     setIsHistoryOpen(!isHistoryOpen);
@@ -33,7 +35,11 @@ const Atri10Page = () => {
       setMessages(prev => [...prev, userMessage]);
 
       try {
-        const response = await _POST(import.meta.env.VITE_ATRI_1_0_URI, { message });
+        const apiUrl = isEnglish 
+          ? import.meta.env.VITE_ATRI_1_0_ENGLISH_URI 
+          : import.meta.env.VITE_ATRI_1_0_VIETNAMESE_URI;
+
+        const response = await _POST(apiUrl, { message });
         const botMessage: ChatMessage = {
           id: Date.now() + 1,
           text: response.response || 'No response',
@@ -70,6 +76,28 @@ const Atri10Page = () => {
         >
           <div className="flex items-center gap-3">
             <h2 className="text-xl font-semibold">Atri Chatbot</h2>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className={`px-3 py-1 rounded-lg ${
+                isEnglish 
+                  ? 'bg-color-primary text-white' 
+                  : 'bg-search-background'
+              }`}
+              onClick={() => setIsEnglish(true)}
+            >
+              EN
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className={`px-3 py-1 rounded-lg ${
+                !isEnglish 
+                  ? 'bg-color-primary text-white' 
+                  : 'bg-search-background'
+              }`}
+              onClick={() => setIsEnglish(false)}
+            >
+              VI
+            </motion.button>
           </div>
           
           <div className="flex items-center gap-4">
@@ -111,8 +139,13 @@ const Atri10Page = () => {
               key={msg.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
             >
+              {msg.sender === 'bot' && (
+                <Avatar className="w-8 h-8">
+                  <AvatarImage src="/src/assets/avatars/atri-avatar.png" alt="Atri" />
+                </Avatar>
+              )}
               <div
                 className={`max-w-[70%] rounded-lg p-3 ${
                   msg.sender === 'user'
@@ -156,7 +189,7 @@ const Atri10Page = () => {
               <Input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Type your message..."
+                placeholder={isEnglish ? "Type your message..." : "Nhập tin nhắn của bạn..."}
                 className="w-full bg-search-background hover:bg-search-hover active:bg-search-active placeholder:text-search-placeholder"
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               />
